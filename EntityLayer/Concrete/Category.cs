@@ -17,6 +17,8 @@ namespace EntityLayer.Concrete
         public string CategoryDescription { get; set; }
         public bool CategoryStatus { get; set; }//ilişkili tablolarda silme işlemi sorun olduğu için 
         //tablodan değer silmek yerine CategoryStatus ile durum değiştireceğiz. Yani Aktif ya da pasif yapacağız.
+        //şimdi Category ve Blog için ilişki yazalım.
+        public List<Blog> Blogs { get; set; }
 
     }
 }

@@ -17,7 +17,12 @@ namespace EntityLayer.Concrete
         public string BlogImage { get; set; } //Blogun büyük resmi
         public DateTime BlogCreateDate { get; set; }
         public bool BlogStatus { get; set; }
+        //Blog ve Category arasındaki ilişki için
+        public int CategoryID { get; set; }//Bunun ismi Category sınıfındaki CategoryID ile aynı olmalıdır.
+        public Category Category { get; set; }
 
+        //Şimdi Bloglar ve Comment arasında ilişki kıuralım
+        public List<Comment> Comments { get; set; }
 
 
     }
