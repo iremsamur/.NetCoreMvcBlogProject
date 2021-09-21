@@ -23,6 +23,11 @@ namespace DataAccessLayer.Repositories
             ADO.NET'deki karşılığı nedir ? ADO.NET Karşılığı ExecuteNonQuery() kullanımı olur.*/
         }
 
+        public void Delete(Category t)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteCategory(Category category)
         {
             context.Remove(category);
@@ -34,10 +39,25 @@ namespace DataAccessLayer.Repositories
             return context.Categories.Find(id);//id'ye göre Bul demektir
         }
 
+        public List<Category> GetListAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(Category t)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Category> ListAllCategory()
         {
             return context.Categories.ToList();//Kategori listeleme işlemi olduğu için Category sınıfının
                                                //veritabanındaki karşılığı olan Categories'e göre listeleme yapar
+        }
+
+        public void Update(Category t)
+        {
+            throw new NotImplementedException();
         }
 
         public void UpdateCategory(Category category)

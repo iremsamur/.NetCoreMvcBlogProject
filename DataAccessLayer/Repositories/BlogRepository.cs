@@ -22,6 +22,11 @@ namespace DataAccessLayer.Repositories
             c.SaveChanges();
         }
 
+        public void Delete(Blog t)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteBlog(Blog blog)
         {
             using var c = new Context();//Context c = new Context() kullanımının 2.bir kullanım şekli
@@ -37,12 +42,27 @@ namespace DataAccessLayer.Repositories
             return c.Blogs.Find(id);
         }
 
+        public List<Blog> GetListAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(Blog t)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Blog> ListAllBlog()
         {
             using var c = new Context();//Context c = new Context() kullanımının 2.bir kullanım şekli
             /*Bunun diğerinden farkı using kullanarak Context sınıfını tanımladığımız zaman çöp toplayıcıdan 
              * önce IDisposable arayüzünün dispose metodunun çalıştırılarak hafızadan silinmesini sağlar.*/
             return c.Blogs.ToList();
+        }
+
+        public void Update(Blog t)
+        {
+            throw new NotImplementedException();
         }
 
         public void UpdateBlog(Blog blog)

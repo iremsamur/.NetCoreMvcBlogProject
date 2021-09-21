@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using DataAccessLayer.Abstract;
 using DataAccessLayer.EntityFramework;
 using DataAccessLayer.Repositories;
 using EntityLayer.Concrete;
@@ -21,38 +22,48 @@ namespace BusinessLayer.Concrete
         //GenericRepository<Category> repo = new GenericRepository<Category>();
 
         //3.yol - SOLID için kullanılması gereken doğru yol budur. Oluşturduğumuz EfCategoryRepository'den bir değer tanımlayalım
-        EfCategoryRepository efCategoryRepository;
+        ICategoryDal _categoryDal;
         //Şimdi CategoryManager sınıfına atamak yapmak için Constructor metod oluşturmam gerekiyor.
+        /*
         public CategoryManager()
         {
             efCategoryRepository = new EfCategoryRepository();//Bu şekilde new'leme işlemini bu constructor metod içerisine yazdım.
         }
+        */
+
+        public CategoryManager(ICategoryDal categoryDal) //constructor injection yaptım.
+        {
+            _categoryDal = categoryDal;
+        }
+
         public void CategoryAdd(Category category)
         {
-            efCategoryRepository.Insert(category);
+            _categoryDal.Insert(category);//Burada _categoryDal diyerek de bu interface'i miras alan generic repository 
+            //sınıfını kullanabiliyorum
+            //içindeki metodlara erişim sağlayabiliyorum.
 
         }
 
         public void CategoryDelete(Category category)
         {
-            efCategoryRepository.Delete(category);
+            _categoryDal.Delete(category);
 
         }
 
         public void CategoryUpdate(Category category)
         {
-            efCategoryRepository.Update(category);
+            _categoryDal.Update(category);
         }
 
         public Category GetById(int id)
         {
-            return efCategoryRepository.GetById(id);
+            return _categoryDal.GetById(id);
 
         }
 
         public List<Category> GetList()
         {
-            return efCategoryRepository.GetListAll();
+            return _categoryDal.GetListAll();
         }
     }
 }

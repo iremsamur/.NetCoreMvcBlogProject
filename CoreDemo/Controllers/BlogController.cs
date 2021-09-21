@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
-    public class Category : Controller
+    public class BlogController : Controller
     {
+        //Blogla ilgili verilerin getirileceği alan 
         public IActionResult Index()
         {
+            //Bu index blogların listelendiği sayfa olacak
             return View();
         }
     }

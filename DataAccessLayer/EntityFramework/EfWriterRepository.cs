@@ -11,5 +11,6 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfWriterRepository  : GenericRepository<Writer>, IWriterDal //Writer için
     {
+
     }
 }

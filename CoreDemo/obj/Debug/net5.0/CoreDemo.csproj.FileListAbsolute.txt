@@ -151,3 +151,6 @@ C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\EntityLayer
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\BusinessLayer.pdb
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\DataAccessLayer.pdb
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\EntityLayer.pdb
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\Category\Index.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\Shared\UserLayout.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\Blog\Index.cshtml.g.cs
