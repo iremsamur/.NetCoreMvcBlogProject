@@ -22,7 +22,7 @@
                                 <ul class="blog-icons my-4">
                                     <li>
                                         <a href="#">
-                                            <i class="far fa-calendar-alt"></i> @item.BlogCreateDate
+                                            <i class="far fa-calendar-alt"></i> @(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))
                                         </a>
                                     </li>
                                     <li class="mx-2">
@@ -32,16 +32,26 @@
                                     </li>
                                     <li>
                                         <a href="#">
-                                            <i class="fas fa-eye"></i> @item.CategoryID
+                                            <i class="fas fa-eye"></i> @item.Category.CategoryName <!--Blog tablosunun ilişkili olduğu Category tablosundaki
+                                                                 name değerini getirmek için .Net Framework de item.Category.CategoryName diyerek ilişkili olduğu 
+                                                            tabloyu çağırıyordum
+                                                        core da bunu yapamam. Net Core da bunun için include metodunu kullanmalıyım Include metodunu eklediğim için
+                                                                                                    artık item.Category.CategoryName şeklinde yazabilirim.
+                                                                                                       Bu yapının ismi Eager Load olarak adlandırılır.-->
                                         </a>
                                     </li>
 
                                 </ul>
                                 <h5 class="card-title">
-                                    <a href="single.html">@item.BlogTitle</a>
+                                    <a href="/Blog/BlogReadAll/@item.BlogID">@item.BlogTitle</a>
                                 </h5>
-                                <p class="card-text mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit sedc dnmo eiusmod tempor incididunt.. </p>
-                                <a href="single.html" class="btn btn-primary read-m">Read More</a>
+                                <p class="card-text mb-3">@item.BlogContent.Substring(0,item.BlogContent.Substring(0,130).LastIndexOf(" "))... </p>
+                                <!--Bu kullanım ile ana sayfadaki blog yazılarının tamamının değil sadece maksimum  ilk 130 karakterinin gösterilmesini sağlar.
+                                    Ve LastIndexOf ile de bu göstermeyi yaparken sondaki kelimeden önceki boşluğa kadar alır. Yani kelimeyi daha henüz bitmeden 
+                                    bölmesini engeller.-->
+                                <a href="/Blog/BlogReadAll/@item.BlogID" class="btn btn-primary read-m">Devamını Oku</a>
+                                <!--Burada Devamını oku yani blog detay sayfasına gitmek için Blog Detay sayfasının linkini verdim. Ama hangi bloga tıklandığını
+                                    yani hangi blogun detay sayfasına gidileceğini tutmak için item.BlogId ile seçilen tıklanan blogunu id'sini alarak yazdım.-->
                             </div>
                         </div>
 

@@ -15,6 +15,8 @@ namespace BusinessLayer.Abstract
         void BlogDelete(Blog blog);
         List<Blog> GetList();
         Blog GetById(int id);
+        List<Blog> GetBlogListWithCategory(); //include metodunu yazdığım bu metodu UI içinde kullanmak için yeni eklediğim metodu 
+        //burada da yazdım.
 
     }
 }

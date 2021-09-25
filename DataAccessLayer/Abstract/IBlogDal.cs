@@ -21,6 +21,11 @@ namespace DataAccessLayer.Abstract
         //id'ye göre veri getirebilme metodu, id'ye göre güncelleme silme işlemi yapabilmem için gerekli 
         Blog GetById(int id);
         */
+
+        /*Normalde bu interface'im IGenericDal içindeki tüm metodları kullanabiliyor. Bu IGenericDal Metodları tüm sınıflar için ortak metodlardır.
+         Ama şimdi ben bu interface için özel olan sadece bunun için geçerli olan Include metodunu buraya yazarım.*/
+        List<Blog> GetListWithCategory();//Bu metodu include metodu için bunu yazarım. Yani blogları ilişkili olduğu tablo olan Category tablosundaki
+        //Category adı ile birlikte getirebilmesini sağlar.
         
     }
 }

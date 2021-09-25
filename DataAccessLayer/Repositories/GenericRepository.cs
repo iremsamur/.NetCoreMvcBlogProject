@@ -3,6 +3,7 @@ using DataAccessLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,6 +29,7 @@ namespace DataAccessLayer.Repositories
 
         }
 
+        //Şartsız listeleme
         public List<T> GetListAll()
         {
             using var c = new Context();
@@ -42,6 +44,13 @@ namespace DataAccessLayer.Repositories
              * önce IDisposable arayüzünün dispose metodunun çalıştırılarak hafızadan silinmesini sağlar.*/
             c.Add(t);
             c.SaveChanges();
+        }
+
+        //Şarta göre listeleme yapma
+        public List<T> GetListAll(Expression<Func<T, bool>> filter)
+        {
+            using var c = new Context();
+            return c.Set<T>().Where(filter).ToList();
         }
 
         public void Update(T t)

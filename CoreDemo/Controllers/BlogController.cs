@@ -14,8 +14,14 @@ namespace CoreDemo.Controllers
         BlogManager blogManager = new BlogManager(new EfBlogRepository());
         public IActionResult Index()
         {
-            var values = blogManager.GetList();
+            var values = blogManager.GetBlogListWithCategory();
             //Bu index blogların listelendiği sayfa olacak
+            return View(values);
+        }
+        //Blog detayları sayfasını oluşturmak için, tüm sayfa yani view olur.
+        public IActionResult BlogReadAll(int id)
+        {
+            var values = blogManager.GetBlogByID(id);
             return View(values);
         }
     }
