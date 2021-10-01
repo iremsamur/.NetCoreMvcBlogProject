@@ -21,7 +21,10 @@ namespace CoreDemo.Controllers
         //Blog detayları sayfasını oluşturmak için, tüm sayfa yani view olur.
         public IActionResult BlogReadAll(int id)
         {
+            ViewBag.i = id;//bu komut ile tıklanan blogun id değerini tutabilirim.
+            
             var values = blogManager.GetBlogByID(id);
+            
             return View(values);
         }
     }

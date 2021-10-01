@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +10,7 @@ namespace CoreDemo.Controllers
 {
     public class CommentController : Controller
     {
+        CommentManager commentManager = new CommentManager(new EfCommentRepository());
         public IActionResult Index()
         {
             return View();
@@ -18,9 +21,12 @@ namespace CoreDemo.Controllers
             return PartialView();
         }
         //Yorumları listeleyelim. Yani o bloga ait yorumları listeleyecek
-        public PartialViewResult CommentListByBlog()
+        public PartialViewResult CommentListByBlog(int id)
         {
-            return PartialView();
+            var values = commentManager.GetList(id);
+            ViewBag.a = values.Count;
+            
+            return PartialView(values);
         }
     }
 }
