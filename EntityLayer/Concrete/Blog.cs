@@ -20,6 +20,9 @@ namespace EntityLayer.Concrete
         //Blog ve Category arasındaki ilişki için
         public int CategoryID { get; set; }//Bunun ismi Category sınıfındaki CategoryID ile aynı olmalıdır.
         public Category Category { get; set; }
+        //Writer-Blog arası ilişki- Her blogun bir yazarı olabilir o yüzden Yazar 1 Blog N olur.
+        public int WriterID { get; set; }//Bunun ismi Category sınıfındaki CategoryID ile aynı olmalıdır.
+        public Writer Writer { get; set; }
 
         //Şimdi Bloglar ve Comment arasında ilişki kıuralım
         public List<Comment> Comments { get; set; }

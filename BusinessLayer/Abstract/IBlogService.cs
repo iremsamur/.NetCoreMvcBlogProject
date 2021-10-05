@@ -17,6 +17,8 @@ namespace BusinessLayer.Abstract
         Blog GetById(int id);
         List<Blog> GetBlogListWithCategory(); //include metodunu yazdığım bu metodu UI içinde kullanmak için yeni eklediğim metodu 
         //burada da yazdım.
+        //Blogları yazarlar ile getirsin
+        List<Blog> GetBlogListWithWriter(int id);
 
     }
 }
