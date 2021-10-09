@@ -30,36 +30,38 @@
         <h3 class="tittle">Yazar Kayıt Sayfası</h3>
         <div class="inner-sec">
             <div class="login p-5 bg-light mx-auto mw-100">
-               @using (Html.BeginForm("Index", "Register", FormMethod.Post)) {
+                @using (Html.BeginForm("Index", "Register", FormMethod.Post))
+                {
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom01">Adınız - Soyadınız</label>
                             <!--validation rules kullanımı için artık input değil textboxfor kullanacağım. -->
                             @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })<!--WriterName 'e göre çalışsın-->
-                            @Html.ValidationMessageFor(x=>x.WriterName,"", new { @class = "text-danger" })<!--Validasyon doğruluğunu da ValidationMessageFor ile WriterName için
-                                                                           çalışacak şekilde kontrol edeceğim.-->
+                            @Html.ValidationMessageFor(x => x.WriterName, "", new { @class = "text-danger" })
+                            <!--Validasyon doğruluğunu da ValidationMessageFor ile WriterName için
+                            çalışacak şekilde kontrol edeceğim.-->
                             <!--<input type="text" class="form-control" id="validationDefault01" name="WriterName" placeholder="" required="">-->
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="validationCustom02">Mail Adresi</label>
                             <!--validation rules kullanımı için artık input değil textboxfor kullanacağım. -->
-                            @Html.TextBoxFor(x => x.WriterMail,new { @class = "form-control" })<!--WriterMail 'e göre çalışsın-->
+                            @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control" })<!--WriterMail 'e göre çalışsın-->
                             @Html.ValidationMessageFor(x => x.WriterMail, "", new { @class = "text-danger" })
                             <!--Validasyon doğruluğunu da ValidationMessageFor ile WriterName için
-        çalışacak şekilde kontrol edeceğim.-->
+                            çalışacak şekilde kontrol edeceğim.-->
                             <!--<input type="email" class="form-control" id="validationDefault02" name="WriterMail" placeholder="" required="">-->
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword1 mb-2">Şifre</label>
-                            @Html.TextBoxFor(x => x.WriterPassword, new { @class = "form-control" })
+                            @Html.PasswordFor(x => x.WriterPassword, new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.WriterPassword, "", new { @class = "text-danger" })
                             <!--<input type="password" class="form-control" id="WriterPassword" name="WriterPassword" placeholder="" required="">-->
                         </div>
                         <div class="form-group col-md-6">
                             <label for="exampleInputPassword2 mb-2">Tekrar Şifre</label>
-                            @Html.TextBoxFor(x => x.WriterPasswordAgain, new { @class = "form-control" })
+                            @Html.PasswordFor(x => x.WriterPasswordAgain, new { @class = "form-control" })
                             @Html.ValidationMessageFor(x => x.WriterPasswordAgain, "", new { @class = "text-danger" })
 
 
@@ -77,27 +79,27 @@
                         </div>
 
                         @*<div class="form-group col-md-6">
-                            <label for="exampleInputPassword2 mb-2">Şehir</label>
-                            @Html.DropDownList("cities", (ViewBag.Cities), "Şehir Seçiniz", new { @class = "form-control dropdown" })
-                        </div>*@
+                                <label for="exampleInputPassword2 mb-2">Şehir</label>
+                                @Html.DropDownList("cities", (ViewBag.Cities), "Şehir Seçiniz", new { @class = "form-control dropdown" })
+                            </div>*@
 
 
 
 
                     </div>
-                    <button type="submit" class="btn btn-primary submit mb-4">Kayıt Ol</button>
+                    <button id="register" type="submit" class="btn btn-primary submit mb-4">Kayıt Ol</button>
                     <!--OnClick="btnSubmit_Click" OnClientClick="return Validate()" javascript yöntemi bir yol-->
                     <p>
                         <a id="alert" href="#">Tüm şartları okudum, kabul ediyorum.</a>
                     </p>
-               }
+                }
 
             </div>
         </div>
     </div>
     <br />
-    
-    <!--sweet alertin tüm şartları okudum kabul ediyorum kısımına tıklayınca çalışması için bir script yazalım. 
+
+    <!--sweet alertin tüm şartları okudum kabul ediyorum kısımına tıklayınca çalışması için bir script yazalım.
         Bu script id'si 1 olan butona tıklandığı zaman içindeki işlemi yap demektir-->
     <script>
         $('#alert').click(function () {
@@ -105,6 +107,18 @@
             swal({
                 title: "Site Kabul Şartları",
                 text: "Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir. Eğer e-posta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsiniz, şifre ve mail adresleriniz şifrelenmiş formatta herhangi bir kullanıcının görmeyeceği şekilde veritabanlarımızda saklanmaktadır.",
+                icon: "success",
+                button: "Tamam",
+            });
+
+        });
+    </script>
+    <script>
+        $('#register').click(function () {
+            //swal("Site Kabul Şartları", "Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir. Eğer e-posta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsiniz, şifre ve mail adresleriniz şifrelenmiş formatta herhangi bir kullanıcının görmeyeceği şekilde veritabanlarımızda saklanmaktadır.");
+            swal({
+                title: "Kayıt Başarılı",
+                text: "Sitemize kaydınız başarıyla gerçekleşti.",
                 icon: "success",
                 button: "Tamam",
             });
