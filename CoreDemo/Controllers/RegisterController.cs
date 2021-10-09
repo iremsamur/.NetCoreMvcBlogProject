@@ -21,6 +21,7 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+           // ViewBag.Cities = GetCityList();
             return View();
         }
         [HttpPost]

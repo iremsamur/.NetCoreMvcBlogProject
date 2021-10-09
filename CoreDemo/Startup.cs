@@ -39,6 +39,13 @@ namespace CoreDemo
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            //Http hata sayfalarýndan sayfa bulunamadý 404 hatasý için kendimiz bu durumda kullanýcýnýn karþýsýna çýkacak sayfayý belirleyelim.
+            //app.UseStatusCodePages();//Durum kodlarý sayfasý kullan anlamýna gelir.
+            //Ama 404 hatasý durumunda ben kullanýcýyý bir web sayfasýna yönlendirmek istediðim için þu metodu kullanýrým
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1","?code={0}");//Bu iki parametre alýr. Biri path parametresi yani hata durumunda
+            //hangi sayfaya yönlendireceðidir. Ýkinci parametre ise bir query alýr. Hata kodu için bir kod deðeri yazarýz.
+
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -50,7 +57,7 @@ namespace CoreDemo
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Blog}/{action=Index}/{id?}");
             });
         }
     }
