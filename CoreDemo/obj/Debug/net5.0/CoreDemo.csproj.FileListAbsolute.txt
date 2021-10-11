@@ -172,3 +172,9 @@ C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\NewsLetter\SubscribeMail.cshtml.g.cs
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\Comment\PartialAddComment.cshtml.g.cs
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\ErrorPage\Error1.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\About\Index.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\About\SocialMediaAbout.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\Contact\Index.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\Writer\Index.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\Writer\WriterProfile.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\Writer\WriterMail.cshtml.g.cs
