@@ -15,3 +15,4 @@ C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\Data
 C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\ref\DataAccessLayer.dll
 C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\DataAccessLayer.pdb
 C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\DataAccessLayer.genruntimeconfig.cache
+C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\DataAccessLayer.csproj.CopyComplete

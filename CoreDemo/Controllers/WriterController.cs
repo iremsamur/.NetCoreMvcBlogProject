@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
+    [Authorize]
     public class WriterController : Controller
     {
-        [Authorize]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
@@ -18,7 +19,7 @@ namespace CoreDemo.Controllers
         {
             return View();
         }
-        [Authorize]
+        
         public IActionResult WriterMail()
         {
             return View();
