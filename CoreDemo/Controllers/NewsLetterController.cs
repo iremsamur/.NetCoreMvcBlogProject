@@ -23,6 +23,7 @@ namespace CoreDemo.Controllers
             
             newsLetter.MailStatus = true;//ekleme yapmadan önce yeni eklenecek mailin statusunu true yap
             newsLetterManager.AddNewsLetter(newsLetter);
+            ViewBag.operationControl = true;//başarılı veya başarısız sweet alerti için işlemin olup olmadığının değerini döndürüyor.
             return RedirectToAction("Index", "Blog");
         }
         /*

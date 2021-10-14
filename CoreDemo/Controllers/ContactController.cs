@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
-  
+
+    
     public class ContactController : Controller
     {
         ContactManager contactManager = new ContactManager(new EfContactRepository());

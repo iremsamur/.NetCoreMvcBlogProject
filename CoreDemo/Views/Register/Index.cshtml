@@ -113,16 +113,37 @@
 
         });
     </script>
-    <script>
-        $('#register').click(function () {
-            //swal("Site Kabul Şartları", "Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir. Eğer e-posta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsiniz, şifre ve mail adresleriniz şifrelenmiş formatta herhangi bir kullanıcının görmeyeceği şekilde veritabanlarımızda saklanmaktadır.");
-            swal({
-                title: "Kayıt Başarılı",
-                text: "Sitemize kaydınız başarıyla gerçekleşti.",
-                icon: "success",
-                button: "Tamam",
-            });
+    @if (ViewBag.registerOperationControl == true)
+    {
+        <script>
+            $('#register').click(function () {
+                //swal("Site Kabul Şartları", "Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir. Eğer e-posta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsiniz, şifre ve mail adresleriniz şifrelenmiş formatta herhangi bir kullanıcının görmeyeceği şekilde veritabanlarımızda saklanmaktadır.");
+                swal({
+                    title: "Kayıt Başarılı",
+                    text: "Sitemize kaydınız başarıyla gerçekleşti.",
+                    icon: "success",
+                    button: "Tamam",
+                });
 
-        });
-    </script>
+            });
+        </script>
+
+    }
+    else
+    {
+        <script>
+            $('#register').click(function () {
+                //swal("Site Kabul Şartları", "Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir. Eğer e-posta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsiniz, şifre ve mail adresleriniz şifrelenmiş formatta herhangi bir kullanıcının görmeyeceği şekilde veritabanlarımızda saklanmaktadır.");
+                swal({
+                    title: "Kayıt Başarısız",
+                    text: "Sitemize kayıt işleminizde bir sorun oluştu. Lütfen bilgileri doğru girdiğinizden ve boş bırakmadığınızdan emin olunuz!!",
+                    icon: "error",
+                    button: "Tamam",
+                });
+
+            });
+        </script>
+
+    }
+
 </section>

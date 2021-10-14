@@ -4,8 +4,7 @@ using CoreDemo.Models.AdditionalModels;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
-
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -15,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
+    
     public class RegisterController : Controller
     {
         WriterManager writerManager = new WriterManager(new EfWriterRepository());
@@ -38,6 +38,7 @@ namespace CoreDemo.Controllers
                 writer.WriterAbout = "Deneme Test";//Writerstatus ve about değerlerini buradan gönderiyoruz.
                                                    //Şimdi ekleme işlemini yapalım.
                 writerManager.WriterAdd(writer);
+                ViewBag.regiterOperationControl = true;
                 return RedirectToAction("Index", "Blog");
             }
             else
