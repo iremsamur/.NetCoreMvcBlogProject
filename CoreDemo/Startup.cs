@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,7 +28,7 @@ namespace CoreDemo
         {
 
             services.AddControllersWithViews();
-            services.AddSession();
+            services.AddSession(); //Bu session yöntemi ile login için gerekliydi.
             
             services.AddMvc(config =>
             {
@@ -35,6 +36,16 @@ namespace CoreDemo
                 .RequireAuthenticatedUser().Build();
                 config.Filters.Add(new AuthorizeFilter(policy));//Bu metod ile projemi proje seviyesinde authorize iþlemi kullanabileceðim
             });
+            //Authorize ile Return Login Url yapýmý
+            
+            services.AddMvc();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie( x => {
+                    x.LoginPath = "/Login/Index";//return yapýlacak url'in yolunu yazýyoruz. Logine Index'le birlikte gitsin dedik
+                
+                }
+                );
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +70,10 @@ namespace CoreDemo
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            //cookie ile login için þunu da eklemeliyiz.
+            app.UseAuthentication();
+
             app.UseSession();
 
             app.UseRouting();

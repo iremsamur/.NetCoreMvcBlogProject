@@ -53,6 +53,11 @@ namespace BusinessLayer.Concrete
         {
             return _blogDal.GetListAll();
         }
+        //footer alanında sadece son 3 blogu getirmesi için metod
+        public List<Blog> GetLast3Blog()
+        {
+            return _blogDal.GetListAll().Take(3).ToList();//burada take metodunu kullanarak sadece 3 adet veri getirmesini sağlarım
+        }
 
         public List<Blog> GetBlogListWithWriter(int id)
         {
