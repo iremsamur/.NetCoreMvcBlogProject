@@ -36,24 +36,37 @@ namespace BusinessLayer.Concrete
             _categoryDal = categoryDal;
         }
 
-        public void CategoryAdd(Category category)
-        {
-            _categoryDal.Insert(category);//Burada _categoryDal diyerek de bu interface'i miras alan generic repository 
-            //sınıfını kullanabiliyorum
-            //içindeki metodlara erişim sağlayabiliyorum.
+        //public void CategoryAdd(Category category)
+        //{
+        //_categoryDal.Insert(t);//Burada _categoryDal diyerek de bu interface'i miras alan generic repository 
+        //    //sınıfını kullanabiliyorum
+        //    //içindeki metodlara erişim sağlayabiliyorum.
 
-        }
+        //}
 
-        public void CategoryDelete(Category category)
-        {
-            _categoryDal.Delete(category);
+        //public void CategoryDelete(Category category)
+        //{
+        //    _categoryDal.Delete(category);
 
-        }
+        //}
 
-        public void CategoryUpdate(Category category)
-        {
-            _categoryDal.Update(category);
-        }
+        //public void CategoryUpdate(Category category)
+        //{
+        //    _categoryDal.Update(category);
+        //}
+
+        //public Category GetById(int id)
+        //{
+        //    return _categoryDal.GetById(id);
+
+        //}
+
+        //public List<Category> GetList()
+        //{
+        //    return _categoryDal.GetListAll();
+        //}
+
+        //Generic yapıya göre düzenlediğim metodlar
 
         public Category GetById(int id)
         {
@@ -65,5 +78,24 @@ namespace BusinessLayer.Concrete
         {
             return _categoryDal.GetListAll();
         }
+
+        public void TAdd(Category t)
+        {
+            _categoryDal.Insert(t);//Burada _categoryDal diyerek de bu interface'i miras alan generic repository 
+            //sınıfını kullanabiliyorum
+            //içindeki metodlara erişim sağlayabiliyorum.
+        }
+
+        public void TDelete(Category t)
+        {
+            _categoryDal.Delete(t);
+        }
+
+        public void TUpdate(Category t)
+        {
+            _categoryDal.Update(t);
+        }
+
+        
     }
 }

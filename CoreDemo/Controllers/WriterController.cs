@@ -29,5 +29,18 @@ namespace CoreDemo.Controllers
         {
             return View();
         }
+        //yazar navbar için bir partialview oluşturuyorum.
+        [AllowAnonymous]
+        public PartialViewResult WriterNavbarPartial()
+        {
+            return PartialView();
+        }
+        //Writer footer alanı için partialview
+        [AllowAnonymous]
+        public PartialViewResult WriterFooterPartial()
+        {
+            return PartialView();
+
+        }
     }
 }
