@@ -29,6 +29,12 @@ namespace CoreDemo.Controllers
             
             return View(values);
         }
+        //ben yazarla ilişkili bir action tanımlayacağım
+        public IActionResult BlogListByWriter()//yazara göre o yazarın bloglarını getirecek
+        {
+            var values = blogManager.GetBlogListWithWriter(1);
+            return View(values);
+        }
         
     }
 }
