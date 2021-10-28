@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/WriterLayout.cshtml";
 }
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
 <h1>Yazarın Blogları</h1>
 <table class="table table-bordered">
     <tr>
@@ -17,32 +19,68 @@
         <th>Düzenle</th>
 
     </tr>
-    @foreach(var item in Model)
-            {
-            <tr>
-                <td>
-                    @item.BlogID
-                </td>
-                <td>
-                    @item.BlogTitle
-                </td>
-                <td>
-                    @item.BlogCreateDate
-                </td>
-                <td>
-                    @item.CategoryID
-                </td>
-                <td>
-                    @item.BlogStatus
-                </td>
-                <td>
-                    <a href="#" class="btn btn-danger">Sil</a>
-                </td>
-                <td>
-                    <a href="#" class="btn btn-warning">Düzenle</a>
-                </td>
-            </tr>
-            }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.BlogID
+            </td>
+            <td>
+                @item.BlogTitle
+            </td>
+            <td>
+                @(((DateTime)item.BlogCreateDate).ToString("dd-MMM-yyyy"))
+            </td>
+            <td>
+                @item.Category.CategoryName
+            </td>
+            <td>
+                @if (item.BlogStatus == true)
+                {
+                    <span class="badge badge-success">Aktif</span>
+
+                }
+                else
+                {
+                    <span class="badge badge-secondary">Pasif</span>
+                }
+
+
+            </td>
+            <td>
+                <a href="/Blog/DeleteBlog/@item.BlogID" onclick="return confirmation()" class="btn btn-danger">Sil</a>
+            </td>
+            <td>
+                <a href="#" class="btn btn-warning">Düzenle</a>
+            </td>
+        </tr>
+    }
 </table>
 <a href="#" class="btn btn-primary">Yeni Blog Oluştur</a>
+<script>
 
+    function confirmation() {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+
+                    // TODO: Handle your delete url by ajax
+                    // ...
+
+                    swal("Poof! Your imaginary file has been deleted!", {
+                        icon: "success",
+                    });
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
+
+
+
+</script>

@@ -40,9 +40,10 @@ namespace BusinessLayer.Concrete
             return _blogDal.GetListWithCategory();
         }
 
-        public Blog GetById(int id)
+        public Blog TGetById(int id)
         {
-            throw new NotImplementedException();
+
+            return _blogDal.GetById(id);
         }
 
         //Şartlı listeleme için
@@ -67,7 +68,8 @@ namespace BusinessLayer.Concrete
 
         public void TAdd(Blog t)
         {
-            throw new NotImplementedException();
+            //Blog ekleme
+            _blogDal.Insert(t);
         }
 
         public void TUpdate(Blog t)
@@ -77,7 +79,11 @@ namespace BusinessLayer.Concrete
 
         public void TDelete(Blog t)
         {
-            throw new NotImplementedException();
+            _blogDal.Delete(t);//Burada t parametresi karşılığı blogvaluedan gelen değer.blogvalue 'da blogcontroller'da
+        }
+        public List<Blog> GetListWithCategoryByWriterBm(int id)
+        {
+            return _blogDal.GetListWithCategoryByWriter(id);
         }
     }
 }
