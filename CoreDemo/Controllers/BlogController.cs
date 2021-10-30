@@ -19,6 +19,8 @@ namespace CoreDemo.Controllers
     {
         //Blogla ilgili verilerin getirileceği alan 
         BlogManager blogManager = new BlogManager(new EfBlogRepository());
+        CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
+        
         public IActionResult Index()
         {
             var values = blogManager.GetBlogListWithCategory();
@@ -46,7 +48,7 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult BlogAdd()
         {
-            CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
+            
             //kategorileri dropdown list içinde listelemek için
             List<SelectListItem> categoryValues = (from x in categoryManager.GetList()
                                                    select new SelectListItem
@@ -104,6 +106,51 @@ namespace CoreDemo.Controllers
             return RedirectToAction("BlogListByWriter");
 
         }
+        //blog düzenleme işlemi
+        [HttpGet]
+        public IActionResult EditBlog(int id)
+        {
+            
+            var blogValue = blogManager.TGetById(id);
+            
+            List<SelectListItem> categoryValues = (from x in categoryManager.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryID.ToString()
+                                                       /*Dropdown'un text ve value olarak iki parametresi vardır. Text kullanıcıya görünen kısım value ise 
+                                                        bunun id değeri olur.*/
+                                                   }).ToList();
+            ViewBag.cv = categoryValues;//categoryvalues'dan gelen değerleri tutar
+            return View(blogValue);//bulmuş olduğun id'nin blog değerlerini döndürür. View sayfasına taşıyacak.
+        }
+        [HttpPost]
+        public IActionResult EditBlog(Blog blog)
+        {
+            /*
+            var blogIDValue = blogManager.TGetById(blog.BlogID);
+            blogIDValue.BlogTitle = blog.BlogTitle;
+           
+           
+            blogIDValue.BlogImage = blog.BlogImage;
+            blogIDValue.BlogContent = blog.BlogContent;
+            blogIDValue.BlogThumbnailImage = blog.BlogThumbnailImage;
+            blogIDValue.CategoryID = blog.CategoryID;
+            */
+            var oldBlogValues = blogManager.TGetById(blog.BlogID);//blogun güncellenmeden önceki bilgilerini getiriyorum.
+            blog.BlogStatus = oldBlogValues.BlogStatus;//değişmesini istemediklerimi bununla yeni haline aktarıyorum. Eski bilgilerini
+            //yeni haline aktarır.
+            blog.WriterID = oldBlogValues.WriterID;
+            blog.BlogCreateDate = oldBlogValues.BlogCreateDate;
+         
+            
+          
+
+
+            blogManager.TUpdate(blog);
+            return RedirectToAction("BlogListByWriter");
+        }
+
 
     }
 }
