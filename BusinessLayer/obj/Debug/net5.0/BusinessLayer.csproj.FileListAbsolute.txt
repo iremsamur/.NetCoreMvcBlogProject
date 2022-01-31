@@ -14,3 +14,4 @@ C:\Users\User\Desktop\C# Projects\CoreDemo\BusinessLayer\obj\Debug\net5.0\Busine
 C:\Users\User\Desktop\C# Projects\CoreDemo\BusinessLayer\obj\Debug\net5.0\BusinessLayer.dll
 C:\Users\User\Desktop\C# Projects\CoreDemo\BusinessLayer\obj\Debug\net5.0\ref\BusinessLayer.dll
 C:\Users\User\Desktop\C# Projects\CoreDemo\BusinessLayer\obj\Debug\net5.0\BusinessLayer.pdb
+C:\Users\User\Desktop\C# Projects\CoreDemo\BusinessLayer\obj\Debug\net5.0\BusinessLayer.csproj.CopyComplete
