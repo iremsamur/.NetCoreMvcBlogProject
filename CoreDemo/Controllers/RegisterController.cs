@@ -37,7 +37,7 @@ namespace CoreDemo.Controllers
                 writer.WriterStatus = true;
                 writer.WriterAbout = "Deneme Test";//Writerstatus ve about değerlerini buradan gönderiyoruz.
                                                    //Şimdi ekleme işlemini yapalım.
-                writerManager.WriterAdd(writer);
+                writerManager.TAdd(writer);
                 ViewBag.regiterOperationControl = true;
                 return RedirectToAction("Index", "Blog");
             }

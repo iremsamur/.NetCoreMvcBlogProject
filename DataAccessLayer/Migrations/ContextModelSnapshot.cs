@@ -214,6 +214,36 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("NewsLetters");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.Notification", b =>
+                {
+                    b.Property<int>("NotificationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NotificationColor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("NotificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NotificationDetails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("NotificationStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NotificationType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NotificationTypeSymbol")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NotificationID");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Writer", b =>
                 {
                     b.Property<int>("WriterID")

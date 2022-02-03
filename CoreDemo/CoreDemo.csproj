@@ -25,4 +25,9 @@
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewComponents\NewFolder\" />
+    <Folder Include="wwwroot\WriterImageFiles\" />
+  </ItemGroup>
+
 </Project>
