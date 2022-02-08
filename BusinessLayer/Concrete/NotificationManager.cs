@@ -23,6 +23,11 @@ namespace BusinessLayer.Concrete
             return _notificationDal.GetListAll();
         }
 
+        public List<Notification> GetNotificationsListByStatus()
+        {
+            return _notificationDal.GetListAll().Where(x=>x.NotificationStatus==true).Take(3).ToList();//statusu true olan ve sadece 3 adet bildirimleri getirir.
+        }
+
         public void TAdd(Notification t)
         {
             throw new NotImplementedException();

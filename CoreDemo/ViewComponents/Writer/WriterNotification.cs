@@ -17,7 +17,7 @@ namespace CoreDemo.ViewComponents.Writer
         public IViewComponentResult Invoke()
         {
             //Bu metod ile notification bildirimleri açılacak.
-            var values = notificationManager.GetList();//tüm bildirileri getir.
+            var values = notificationManager.GetNotificationsListByStatus();//sadece statusu true olanları getirir.
             return View(values);
         }
 

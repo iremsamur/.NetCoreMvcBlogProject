@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface INotificationService : IGenericService<Notification>
+    public interface IMessageService : IGenericService<Message>
     {
-        List<Notification> GetNotificationsListByStatus();//sadece aktiflik durumu true olan duyuruları getirsin.
+        List<Message> GetInBoxListByWriter(string p);//yazara göre mesaj getir.
     }
 }
