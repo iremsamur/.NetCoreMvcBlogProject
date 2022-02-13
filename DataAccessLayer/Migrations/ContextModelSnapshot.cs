@@ -226,6 +226,40 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Messages");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.Message2", b =>
+                {
+                    b.Property<int>("messageID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ReceiverID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SenderID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("messageDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("messageDetails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("messageStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("subject")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("messageID");
+
+                    b.HasIndex("ReceiverID");
+
+                    b.HasIndex("SenderID");
+
+                    b.ToTable("Message2s");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.NewsLetter", b =>
                 {
                     b.Property<int>("MailID")
@@ -337,6 +371,21 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Blog");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.Message2", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Writer", "ReceiverUser")
+                        .WithMany("WriterReceiver")
+                        .HasForeignKey("ReceiverID");
+
+                    b.HasOne("EntityLayer.Concrete.Writer", "SenderUser")
+                        .WithMany("WriterSender")
+                        .HasForeignKey("SenderID");
+
+                    b.Navigation("ReceiverUser");
+
+                    b.Navigation("SenderUser");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Blog", b =>
                 {
                     b.Navigation("Comments");
@@ -350,6 +399,10 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("EntityLayer.Concrete.Writer", b =>
                 {
                     b.Navigation("Blogs");
+
+                    b.Navigation("WriterReceiver");
+
+                    b.Navigation("WriterSender");
                 });
 #pragma warning restore 612, 618
         }

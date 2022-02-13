@@ -11,8 +11,8 @@ C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\Data
 C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\DataAccessLayer.AssemblyInfoInputs.cache
 C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\DataAccessLayer.AssemblyInfo.cs
 C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\DataAccessLayer.csproj.CopyComplete
 C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\DataAccessLayer.dll
 C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\ref\DataAccessLayer.dll
 C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\DataAccessLayer.pdb
 C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\DataAccessLayer.genruntimeconfig.cache
-C:\Users\User\Desktop\C# Projects\CoreDemo\DataAccessLayer\obj\Debug\net5.0\DataAccessLayer.csproj.CopyComplete

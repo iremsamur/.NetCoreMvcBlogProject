@@ -21,5 +21,10 @@ namespace EntityLayer.Concrete
         public bool WriterStatus { get; set; }
         //Writer Blog ilişkisi
         public List<Blog> Blogs { get; set; }
+
+        //Writer Ve Message İlişkisi - 2 foreign key'li ilişki için
+        public virtual ICollection<Message2> WriterSender { get; set; }//Gönderici için WriterMessage ilişkisi
+        public virtual ICollection<Message2> WriterReceiver { get; set; } //alıcı için WriterMessage ilişkisi
+
     }
 }

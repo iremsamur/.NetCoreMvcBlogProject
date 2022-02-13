@@ -19,6 +19,37 @@ namespace DataAccessLayer.Concrete
             //Veritabanı bağlantı stringimi bu şekilde tanımlarım.
 
         }
+
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //entitiyler arasındaki 1'e çok ilişki dışındaki çoka çok, 2 foreign key'li ilişkileri burada
+            //tanımlamamız gerekir. Bunu ModelBuilder sınıfını kullanarak yaparız.
+
+            //Gönderici için
+
+            modelBuilder.Entity<Message2>()//Message2 tablosundaki foreign keyler için ilişki kurulacak demek
+                .HasOne(x => x.SenderUser)//Message sınıfındaki ilişki kurulacak değer.
+                .WithMany(y => y.WriterSender)//Writer sınıfındaki message sınıfındaki değerle ilişki kurulacak değerin karşılığı olan değer
+                .HasForeignKey(z => z.SenderID)//message sınıfındaki gönderici id değeri gelecek. Yani foreign key olacak olan değer.
+                .OnDelete(DeleteBehavior.ClientSetNull);//İlişkili tabloda silme işlemi yaparken nasıl davranacağını belirtiyoruz.
+            //şimdi aynı işlemi Alıcı için yapalım
+            modelBuilder.Entity<Message2>()//Message2 tablosundaki foreign keyler için ilişki kurulacak demek
+                .HasOne(x => x.ReceiverUser)//Sender için yapılan işlemleri receiver içinde yazıyorum.
+                .WithMany(y => y.WriterReceiver)
+                .HasForeignKey(z => z.ReceiverID)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+                
+
+            //HomeMatches ---> WriterSender 
+            //AwayMatches ---> WriterReceiver 
+
+            //HomeTeam ---> SenderUser
+            //HuestTeam ---> ReceiverUser
+
+
+        }
+        
         public DbSet<About> Abouts { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -30,6 +61,8 @@ namespace DataAccessLayer.Concrete
 
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Message2> Message2s { get; set; }
+        //public DbSet<Team> Teams { get; set; }
 
     }
 }

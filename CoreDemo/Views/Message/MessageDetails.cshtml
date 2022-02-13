@@ -1,0 +1,23 @@
+﻿@model EntityLayer.Concrete.Message2
+@{
+    ViewData["Title"] = "MessageDetails";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Mesaj Detay Sayfası</h1>
+
+<br />
+
+<!--id'sine göre seçilen blogun tüm bilgilerini getiriyor. Düzenleyebilmemi sağlayacak-->
+@Html.Label("Mesaj ID")
+@Html.LabelFor(x => x.messageID, new { @class = "form-control" })
+<br />
+@Html.Label("Mesaj Başlığı")
+@Html.LabelFor(x => x.subject, new { @class = "form-control" })
+<br />
+@Html.Label("Mesaj İçeriği")
+@Html.TextAreaFor(x => x.messageDetails,20,3, new { @class = "form-control"  })
+<br />
+<button class="btn btn-success">Mesajlara Dön</button>
+
+
