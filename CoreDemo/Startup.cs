@@ -29,7 +29,7 @@ namespace CoreDemo
 
             services.AddControllersWithViews();
             services.AddSession(); //Bu session yöntemi ile login için gerekliydi.
-            
+
             services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder()
@@ -37,15 +37,16 @@ namespace CoreDemo
                 config.Filters.Add(new AuthorizeFilter(policy));//Bu metod ile projemi proje seviyesinde authorize iþlemi kullanabileceðim
             });
             //Authorize ile Return Login Url yapýmý
-            
+
             services.AddMvc();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie( x => {
+                .AddCookie(x =>
+                {
                     x.LoginPath = "/Login/Index";//return yapýlacak url'in yolunu yazýyoruz. Logine Index'le birlikte gitsin dedik
-                
+
                 }
                 );
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,7 +65,7 @@ namespace CoreDemo
             //Http hata sayfalarýndan sayfa bulunamadý 404 hatasý için kendimiz bu durumda kullanýcýnýn karþýsýna çýkacak sayfayý belirleyelim.
             //app.UseStatusCodePages();//Durum kodlarý sayfasý kullan anlamýna gelir.
             //Ama 404 hatasý durumunda ben kullanýcýyý bir web sayfasýna yönlendirmek istediðim için þu metodu kullanýrým
-            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1","?code={0}");//Bu iki parametre alýr. Biri path parametresi yani hata durumunda
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");//Bu iki parametre alýr. Biri path parametresi yani hata durumunda
             //hangi sayfaya yönlendireceðidir. Ýkinci parametre ise bir query alýr. Hata kodu için bir kod deðeri yazarýz.
 
 
@@ -82,6 +83,12 @@ namespace CoreDemo
 
             app.UseEndpoints(endpoints =>
             {
+                //Areas için ekliyorum
+                endpoints.MapControllerRoute(
+                name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Blog}/{action=Index}/{id?}");

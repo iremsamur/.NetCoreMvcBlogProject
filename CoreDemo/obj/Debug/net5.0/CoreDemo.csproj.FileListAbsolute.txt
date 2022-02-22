@@ -197,3 +197,11 @@ C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\CoreDemo.cs
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\CoreDemo.genruntimeconfig.cache
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\Message\InBox.cshtml.g.cs
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\Message\MessageDetails.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\Admin\Index.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\Admin\AdminNavbarPartial.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\AdminLayout.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Areas\Admin\Views\Category\Index.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\JetBrains.Annotations.dll
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\X.PagedList.dll
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\X.PagedList.Mvc.Core.dll
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Areas\Admin\Views\Category\AddCategory.cshtml.g.cs

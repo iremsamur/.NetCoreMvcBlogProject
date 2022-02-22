@@ -55,7 +55,7 @@ namespace CoreDemo.Controllers
                 //parametre olarak alıyor.
                 //gelen değere şifreli formatta cokkie oluşturalım
                 await HttpContext.SignInAsync(principal);
-                return RedirectToAction("Index", "Writer");
+                return RedirectToAction("Index", "Dashboard");//yazar sisteme giriş yaptığında dashboarda gitsin.
             }
             else
             {

@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
 using CoreDemo.Models;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -18,8 +19,18 @@ namespace CoreDemo.Controllers
     public class WriterController : Controller
     {
         WriterManager writerManager = new WriterManager(new EfWriterRepository());
+        Context c = new Context();
+        [Authorize]
         public IActionResult Index()
         {
+            var userMail = User.Identity.Name;//sistemde o anda giriş yapmış aktif kullanıcının name bilgisini tutar.
+            ViewBag.m = userMail;//bu name değerini frontend tarafına viewbag ile taşıyalım.
+            //giriş yapan yazarın name değeri dışındaki diğer bilgilerini aşağıdaki metod uygun olmasa bile bu yöntemle 
+            //getirebiliriz.
+            Context c = new Context();
+            var writerName = c.Writers.Where(x => x.WriterMail == userMail).Select(y=>y.WriterName).FirstOrDefault();
+            ViewBag.m2 = writerName;
+            
             return View();
         }
         public IActionResult WriterProfile()
@@ -49,15 +60,18 @@ namespace CoreDemo.Controllers
             return PartialView();
 
         }
-        [AllowAnonymous]
+       
         [HttpGet]
         public IActionResult WriterEditProfile()
         {
+            var userMail = User.Identity.Name;//sisteme login olan kullanıcının name değerini tutsun.
+
+            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();//bu yöntem solidi eziyor.
             //yazarın kayıtlı bilgilerini görebilmesi için bilgilerin frontendde listelendiği alan
-            var writerValues = writerManager.TGetById(1);
+            var writerValues = writerManager.TGetById(writerID);
             return View(writerValues);
         }
-        [AllowAnonymous]
+        
         [HttpPost]
         public IActionResult WriterEditProfile(Writer writer)
         {

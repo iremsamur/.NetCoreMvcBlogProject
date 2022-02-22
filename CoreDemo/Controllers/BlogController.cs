@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -14,12 +15,14 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
-    [AllowAnonymous]
+   
     public class BlogController : Controller
     {
+
         //Blogla ilgili verilerin getirileceği alan 
         BlogManager blogManager = new BlogManager(new EfBlogRepository());
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
+        Context c = new Context();
         
         public IActionResult Index()
         {
@@ -39,8 +42,12 @@ namespace CoreDemo.Controllers
         //ben yazarla ilişkili bir action tanımlayacağım
         public IActionResult BlogListByWriter()//yazara göre o yazarın bloglarını getirecek
         {
-            
-            var values = blogManager.GetListWithCategoryByWriterBm(1);
+            var userMail = User.Identity.Name;//sisteme login olan kullanıcının name değerini tutsun.
+
+            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+
+            var values = blogManager.GetListWithCategoryByWriterBm(writerID);//giriş yapan kullanıcının id'sini alıyor
+            //Ve o id'ye göre blogları listeliyor.
             return View(values);
         }
         //Blog ekleme işlemini yazalım
@@ -69,11 +76,14 @@ namespace CoreDemo.Controllers
             BlogValidator blogValidator = new BlogValidator();
             //ValidatonResult isminde bir sınıfım var bunun metodlarını kullanabilmek için bunu da çağırıyorum.
             ValidationResult results = blogValidator.Validate(blog); //Writer sınıfı için tüm bu WriterValidator içindeki kontrolleri yap
+            var userMail = User.Identity.Name;//sisteme login olan kullanıcının name değerini tutsun.
+
+            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
             if (results.IsValid)//Eğer sonuçlar geçerli ise
             {
                 blog.BlogStatus = true;
                 blog.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                blog.WriterID = 1;
+                blog.WriterID = writerID;
                
                 
 

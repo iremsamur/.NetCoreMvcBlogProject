@@ -10,7 +10,7 @@ namespace CoreDemo.Controllers
 {
     public class DashboardController : Controller
     {
-        [AllowAnonymous]
+        
         public IActionResult Index()
         {
             //Toplam blog sayısını bulalım.
