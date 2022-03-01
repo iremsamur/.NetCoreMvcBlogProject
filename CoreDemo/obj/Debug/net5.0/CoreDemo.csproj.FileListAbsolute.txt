@@ -205,3 +205,13 @@ C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\JetBrains.A
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\X.PagedList.dll
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\X.PagedList.Mvc.Core.dll
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Areas\Admin\Views\Category\AddCategory.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\ClosedXML.dll
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\DocumentFormat.OpenXml.dll
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\ExcelNumberFormat.dll
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\System.IO.Packaging.dll
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Areas\Admin\Views\Blog\BlogListExcel.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Areas\Admin\Views\Blog\BlogTitleListExcel.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Areas\Admin\Views\Widget\Index.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\Components\Statistic1\Default.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\Components\Statistic2\Default.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Areas\Admin\Views\Shared\Components\Statistic4\Default.cshtml.g.cs

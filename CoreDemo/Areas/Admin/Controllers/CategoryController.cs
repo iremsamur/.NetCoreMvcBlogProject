@@ -3,6 +3,7 @@ using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace CoreDemo.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
+        [AllowAnonymous]
         public IActionResult Index(int page=1)//page'e 1 vererek page 1'den başlasın diyoruz. page sayfa değişkeni
         {
             //Kategorileri listeleyecek
