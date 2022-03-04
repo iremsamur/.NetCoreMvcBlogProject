@@ -20,7 +20,7 @@ namespace CoreDemo.Areas.Admin.ViewComponents.Statistic
             ViewBag.v2 = context.Contacts.Count();// toplam admine gelen mesaj sayısı
             ViewBag.v3 = context.Comments.Count();//toplam yorum sayısı
             //api'den gelen hava durumunu çekeceğim kodlarımı buradan yazıyorum
-            string api = "2e685b9e03a0687f4eea17798900a726";// openweather'dan hava durumu bilgisi çekebilmek için oluşturduğum api key
+            string api = "api key";// openweather'dan hava durumu bilgisi çekebilmek için oluşturduğum api key
             string connection = "https://api.openweathermap.org/data/2.5/weather?q=ankara&mode=xml&lang=tr&units=metric&appid="+api;
             //bağlantı adresini yazıyoruz
             XDocument document = XDocument.Load(connection);//bana xml dökümanını getirecek
