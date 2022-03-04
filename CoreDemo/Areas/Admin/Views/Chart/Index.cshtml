@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div id="chartDiv" style="width:800px;height:600px;">
+            <h2>Burası chart alanıdır. Chart buraya gelecek</h2>
+
+
+        </div>
+
+    </div>
+
+</div>
+<!--Chart alanı için script kodları yazalım-->
+<script type="text/javascript" src="https://wwww.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">google.load('visualization', '1.0', { 'packages': ['corechart'] });</script>
+@section scripts{
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });//önce google charts kullanımı için paketleri çağırdım
+        //fonksiyon çağırılınca çizme işlemi gerçekleşecek
+        google.charts.setOnLoadCallback(DrawonLoad);//Bu drawonload fonksiyonunu aşağıda kendimiz yazacağız
+        //drawonload fonksiyonunu yazıyorum.
+        function DrawonLoad() {
+            $(function () {
+                //şimdi ajax'i burada kullanacağım
+                $.ajax({
+                    //Burası çok önemli Çünkü ajax'da da kullanılıyor
+                    //gerekli parametreleri yazıyoruz
+                    type: 'GET',
+                    url: '/Admin/Chart/CategoryChart/',//bu fonksiyon çalıştırıldığında backendde
+                    // Admin içinde Chart içinde yer alan CategoryChart fonksiyonunu çağırıp çalıştırsın diyorum.
+                    success: function (chartsdata) {//eğer bu CategoryChart'ı yukarıda çağırma işlemi başarılı olursa burada bir
+                        //fonksiyon daha çağırsın diyoruz
+                        var Data = chartsdata.jsonlist;//backend tarafında CategoryChart metodunda döndürdüğümüz
+                        //jsonlist değişkenini bu data değeri tutuyor. Yani gelen değeri tutuyor
+                        var data = new google.visualization.DataTable();//datayada görselleştirme için gerekli atamayı yaptım
+                        data.addColumn('string', 'categoryName');//grafiğe iki sütun eklenecek. Birisi string türü için
+                        //string tür olduğunu belirtiyorum. bu kısıma grafiğe çekeceğimiz alanın string değerini veriyoruz.
+                        //Yani categoryname gelecek
+                        data.addColumn('number', 'categoryCount');//Buda çekeceğim sayısal alan olacak
+                        //oda number türünden olacak. Ve categoryCount gelecek
+                        //her bir data için grafiğe yansıtmak için döngüde alıyorum
+                        for (var i = 0; i < Data.length; i++) {
+                            data.addRow([Data[i].categoryName, Data[i].categoryCount]);//Bana her bir data için kaç data varsa
+                            //Data'dan gelen değerin categoryName ve categoryCount değerlerini al dedim.
+
+                        }
+                        //şimdi chart'ın çizilmesi işlemini yazalım
+                        var chart = new google.visualization.PieChart(document.getElementById('chartDiv'));
+                        //chartımın türüne belirterek chartın geleceği alan chartdiv'in id'sini verdim.
+                        //chart pie türünden olsun dedim
+                        chart.draw(data,
+                            //chartı burada çiziyoruz
+                            {
+                                title: "Google Chart Core Projesi",
+                                position: "top",
+                                fontsize: "16px"
+
+                            }
+                        );
+
+
+
+                    }
+
+                });
+
+
+            });
+
+        }
+
+
+    </script>
+
+
+}
+

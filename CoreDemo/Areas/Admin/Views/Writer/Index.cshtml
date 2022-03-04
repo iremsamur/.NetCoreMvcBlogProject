@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<h1>Yazar AJAX İşlemleri</h1>
+<br />
+<button type="button" id="btngetlist" class="btn btn-outline-primary">Yazar Listesi</button><!--ajax kullanımı için
+                                                                                                html elemanına id vermem gerekiyor.
+                                                                                                çünkü js'de ajax'de
+                                                                                                id ile html elemanlarını kullanırım-->
+<br />
+<br />
+<div id="writerlist">
+    Buraya yazarlar gelecek
+
+
+</div>
+@section scripts{<!---admin layout içinde scripts adını vererek komut tanımlamıştım
+                     buraya o scripts adını yazdım.-->
+<script>
+    //şimdi buraya script kodlara yazacağım
+    $("#btngetlist").click(function () {
+        //buraya tetiklenecek aracın id'sini yazacağım. yukarıda tıklanınca yazarların listeleneceği
+        //html butonun id'sine btngetlist adını vermiştim.  şimdi o id'li elemana script yazacağımı belirtiyorum
+        //.click ile o id'li butona tıklandığı zaman bu fonksiyon çalışsın, bu işlemleri yapsın diyorum
+        //ve şimdi ajax kodlarını yazalım
+        $.ajax({
+            //ajaxa ait parametreleri yazalım
+            contentType: "application/json",//burada uygulama türünü yazdım
+            dataType: "json",//dönen verinin türü 
+            type: "Get",//Get olduğu zaman çalışsın
+            url: "/Admin/Writer/WriterList/",//url'e ise çalışacak olan backend fonksiyonunun, action'unun bulunduğu konumu veriyorum
+            //Yani butona tıklanınca Admin içinde Writer controller'unda yer alan WriterList action result'ı çalışsın diyorum.
+            success: function (func) {//eğer işlem başarılı olursa func isimli bir fonksiyon döndürsün
+                let w = jQuery.parseJSON(func);//func'dan gelen değeri json'a dönüştürür.
+                console.log(w);//bu fonksiyon konsola w gelen değerleri yazdırır.
+
+                //ben verileri console yerine tablo da listelemek istiyorum
+                let tablehtml = "<table class=table table-bordered> <tr> <th>Yazar ID</th> <th>Yazar Adı</th></tr >";
+
+                $.each(w, (index, value) => {
+                    tablehtml += `<tr><td>${value.Id}</td> <td>${value.name}</td> </tr>`
+                    //tablehtml değişkenini oluşturmuştum. bu tabloya verileri listelemek için altgr+;tuşuna basıyorum
+                    //bu işaret içine tablo oluşturup içinde WriterClass'ımın verilerini Id ve name değerlerini
+                    //value ile listeletiyorum.
+
+
+                });
+                //artık şimdi verilerin tabloya yansıtılması işlemini yazalım.
+                tablehtml += "</table>";//bunu tabloyu yukarıda oluşturup içine dahil ederekde yapabiliriz
+                $("#writerlist").html(tablehtml);//html içinde tablehtml'den geleni yansıtır.
+                //writerlist id'sini verdiğim div bloğunun içinde tablo olarak yazarları yansıtsın dedim.
+
+                
+
+
+            }
+
+
+
+
+
+        });
+
+
+    });
+
+</script>
+
+
+
+ }
+

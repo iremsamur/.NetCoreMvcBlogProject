@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CoreDemo.Areas.Admin.ViewComponents.Statistic
 {
@@ -18,6 +19,26 @@ namespace CoreDemo.Areas.Admin.ViewComponents.Statistic
             ViewBag.v1 = blogManager.GetList().Count();//Viewbag ile toplam blog sayısını alıp html'e taşır.
             ViewBag.v2 = context.Contacts.Count();// toplam admine gelen mesaj sayısı
             ViewBag.v3 = context.Comments.Count();//toplam yorum sayısı
+            //api'den gelen hava durumunu çekeceğim kodlarımı buradan yazıyorum
+            string api = "2e685b9e03a0687f4eea17798900a726";// openweather'dan hava durumu bilgisi çekebilmek için oluşturduğum api key
+            string connection = "https://api.openweathermap.org/data/2.5/weather?q=ankara&mode=xml&lang=tr&units=metric&appid="+api;
+            //bağlantı adresini yazıyoruz
+            XDocument document = XDocument.Load(connection);//bana xml dökümanını getirecek
+            //şimdi xml'den çekmek istediğim bilgileri çağırıyorum
+            ViewBag.weather = document.Descendants("temperature").ElementAt(0).Attribute("value").Value;//Descendants metodu içine xml'de çekmek
+                                                                                                  //istediğim alanları yazıyorum
+            //mesela  <temperature value="1.9" min="1.66" max="2.58" unit="celsius"/> alanından temperature yazarak sıcaklık çekerim
+            //veya diğer alanlar için diğer uygun alanların adını veririm.
+            //Sonra ElementAt fonksiyonu ile hangi index'te değeri çekmek istiyorsam ona veriyorum
+            //Mesela burada 0. indisteki değeri getir dedim.
+            //sonra attribute ile bu temperature alanına baktığımda min, max,value farklı değerler alanlar var
+            //Attribute içinde hangi alanı istediğimi belirtiyorum. Value mu max mı neyi çekmek istiyorum?
+            //sıcaklık için value'yu verdik
+
+
+
+
+
             return View();
         }
     }
