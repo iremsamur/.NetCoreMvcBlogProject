@@ -1,0 +1,16 @@
+﻿@using CoreDemo.Controllers
+@model Class1
+@{
+    ViewData["Title"] = "AddEmployee";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<form method="post">
+    <label>Çalışan Adı- Soyadı</label>
+    <input type="text" asp-for="@Model.Name" class="form form-control"/>
+    <br />
+    <button type="submit" class="btn btn-info">Çalışan Ekle</button>
+
+</form>
+
+
