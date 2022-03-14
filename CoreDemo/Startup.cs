@@ -1,3 +1,5 @@
+using DataAccessLayer.Concrete;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -26,6 +28,16 @@ namespace CoreDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //identity servisini eklememiz gerekiyor
+            services.AddDbContext<Context>();
+            services.AddIdentity<AppUser, AppRole>(x=> {
+                //Burada  Identityden gelen default passworde kýsýtlamalr getirebilirim.
+                x.Password.RequireUppercase = false;//büüyk harf mecburiyeti istemesin
+                x.Password.RequireNonAlphanumeric = false;//numericinde zorunluluðu ortadan kalkar.
+
+            })
+                .AddEntityFrameworkStores<Context>();
 
             services.AddControllersWithViews();
             services.AddSession(); //Bu session yöntemi ile login için gerekliydi.

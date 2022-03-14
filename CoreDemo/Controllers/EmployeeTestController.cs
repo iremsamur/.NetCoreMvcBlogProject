@@ -53,6 +53,58 @@ namespace CoreDemo.Controllers
             }
             return View(p);
         }
+        //düzenleme işlemi
+        [HttpGet]
+        public async Task<IActionResult> EditEmployee(int id)
+        {
+            //bana güncellenecek kullanıcı verilerini getirir.
+            var httpClient = new HttpClient();
+            var responseMessage = await httpClient.GetAsync("https://localhost:44358/api/Default/" + id);//id değerine göre veriyi alıyor
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonEmployee = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<Class1>(jsonEmployee);
+                return View(values);
+
+
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+        [HttpPost]
+        //güncelleme işlemi
+        public async Task<IActionResult> EditEmployee(Class1 p)
+        {
+            var httpClient = new HttpClient();
+            var jsonEmployee = JsonConvert.SerializeObject(p);
+            var content = new StringContent(jsonEmployee,Encoding.UTF8,"application/json");
+            var responseMessage = await httpClient.PutAsync("https://localhost:44358/api/Default/",content);
+            //responseMessage'da apiye bağlı gerçekleşecek işlemi yazıyoruz.
+            //güncelleme işleminde putasync kullanılır
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");//güncelleme olursa Index'e yönlendir.
+            }
+            return View(p);//güncelleme işlemi gerçekleşmezse parametreyi döndürüyor.
+        }
+        //silme işlemi
+       
+        public async Task<IActionResult> DeleteEmployee(int id)
+        {
+            //bana silinecek kullanıcı verilerini getirir.
+            var httpClient = new HttpClient();
+            var responseMessage = await httpClient.DeleteAsync("https://localhost:44358/api/Default/" + id);//id değerine göre veriyi alıyor
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+
+
+            }
+            return View();
+           
+        }
 
     }
     public class Class1{

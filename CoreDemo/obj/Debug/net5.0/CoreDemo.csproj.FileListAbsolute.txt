@@ -229,3 +229,10 @@ C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\WebApi.dll
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\WebApi.pdb
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\EmployeeTest\AddEmployee.cshtml.g.cs
 C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\EmployeeTest\Index.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\EmployeeTest\EditEmployee.cshtml.g.cs
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\User\Desktop\C# Projects\CoreDemo\CoreDemo\obj\Debug\net5.0\Razor\Views\RegisterUser\Index.cshtml.g.cs
