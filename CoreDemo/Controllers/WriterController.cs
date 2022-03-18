@@ -6,6 +6,7 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,13 @@ namespace CoreDemo.Controllers
     {
         WriterManager writerManager = new WriterManager(new EfWriterRepository());
         Context c = new Context();
+        private readonly UserManager<AppUser> _userManager;
+
+        public WriterController(UserManager<AppUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
         [Authorize]
         public IActionResult Index()
         {
@@ -64,12 +72,18 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult WriterEditProfile()
         {
-            var userMail = User.Identity.Name;//sisteme login olan kullanıcının name değerini tutsun.
+            //var username = User.Identity.Name;//sisteme login olan kullanıcının name değerini tutsun.
+            //sonra username'den usermail'i çekmeliyim
+            var username = User.Identity.Name;
 
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();//bu yöntem solidi eziyor.
-            //yazarın kayıtlı bilgilerini görebilmesi için bilgilerin frontendde listelendiği alan
-            var writerValues = writerManager.TGetById(writerID);
-            return View(writerValues);
+            var userMail = c.Users.Where(x => x.UserName== username).Select(y => y.Email).FirstOrDefault();//usermaili getirerek
+            UserManager userManager = new UserManager(new EfUserRepository());
+            
+            var id = c.Users.Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();//maile göre id'li kullanıcıyı getirir.
+            var values = userManager.TGetById(id);
+
+            return View(values);
+
         }
         
         [HttpPost]

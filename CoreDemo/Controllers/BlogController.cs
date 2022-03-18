@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
-   
+    [AllowAnonymous]
     public class BlogController : Controller
     {
 
@@ -24,6 +24,7 @@ namespace CoreDemo.Controllers
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
         Context c = new Context();
         
+        [AllowAnonymous]//ana sayfa
         public IActionResult Index()
         {
             var values = blogManager.GetBlogListWithCategory();
@@ -31,6 +32,8 @@ namespace CoreDemo.Controllers
             return View(values);
         }
         //Blog detayları sayfasını oluşturmak için, tüm sayfa yani view olur.
+        //ana sayfa
+        //[AllowAnonymous]
         public IActionResult BlogReadAll(int id)
         {
             ViewBag.i = id;//bu komut ile tıklanan blogun id değerini tutabilirim.

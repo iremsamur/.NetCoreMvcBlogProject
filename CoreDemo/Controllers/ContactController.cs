@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace CoreDemo.Controllers
 {
 
-    
+    [AllowAnonymous]
     public class ContactController : Controller
     {
         ContactManager contactManager = new ContactManager(new EfContactRepository());

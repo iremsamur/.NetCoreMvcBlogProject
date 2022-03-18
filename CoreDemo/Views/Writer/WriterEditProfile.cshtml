@@ -1,4 +1,4 @@
-﻿@model EntityLayer.Concrete.Writer
+﻿@model EntityLayer.Concrete.AppUser
 
 @{
     ViewData["Title"] = "WriterEditProfile";
@@ -12,7 +12,7 @@
         <div class="card-body">
             <h4 class="card-title">Yazar Profil Bilgileri Düzenleme</h4>
             <br />
-            @Html.HiddenFor(x => x.WriterID, new { @class = "form-control" })
+            @Html.HiddenFor(x => x.Id, new { @class = "form-control" })
             
 
         <form class="forms-sample">
@@ -21,22 +21,25 @@
 
                 @*<input type="text" class="form-control" id="exampleInputUsername1" asp-for = "WriterName" placeholder="Username">*@
 
-                @Html.TextBoxFor(x => x.WriterName, new { @class = "form-control" })
+                @Html.TextBoxFor(x => x.NameSurname, new { @class = "form-control" })
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail3">Mail Adres</label>
-                @Html.TextBoxFor(x => x.WriterMail, new { @class = "form-control" })
+                @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                @*<input type="text" class="form-control" id="exampleInputUsername1" asp-for="WriterMail" placeholder="Username">*@
+
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail3">Kullanıcı Adı</label>
+                @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
                 @*<input type="text" class="form-control" id="exampleInputUsername1" asp-for="WriterMail" placeholder="Username">*@
 
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword4">Şifre</label>
-                @Html.PasswordFor(x => x.WriterPassword, new { @class = "form-control" })
+                @Html.PasswordFor(x => x.PasswordHash, new { @class = "form-control" })
             </div>
-            <div class="form-group">
-                <label for="exampleInputPassword4">Şifre Tekrar</label>
-                @Html.PasswordFor(x => x.WriterPasswordAgain, new { @class = "form-control" })
-            </div>
+
 
             <div class="form-group">
                 <label>Yazar Görsel</label>
@@ -49,10 +52,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="exampleTextarea1">Yazar Hakkında</label>
-                @Html.TextAreaFor(x => x.WriterAbout, 10, 3, new { @class = "form-control" })
-            </div>
+           
             <button type="submit" class="btn btn-gradient-primary mr-2">Güncelle</button>
             <button class="btn btn-light">İptal</button>
         </form>
