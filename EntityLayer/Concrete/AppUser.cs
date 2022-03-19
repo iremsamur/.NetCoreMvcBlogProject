@@ -11,6 +11,7 @@ namespace EntityLayer.Concrete
     {
 
         public string NameSurname { get; set; }
-        public int ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
+        public string PasswordAgain { get; set; }
     }
 }

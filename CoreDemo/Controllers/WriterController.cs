@@ -70,58 +70,96 @@ namespace CoreDemo.Controllers
         }
        
         [HttpGet]
-        public IActionResult WriterEditProfile()
+        public async Task<IActionResult> WriterEditProfile()
         {
             //var username = User.Identity.Name;//sisteme login olan kullanıcının name değerini tutsun.
             //sonra username'den usermail'i çekmeliyim
-            var username = User.Identity.Name;
+            //var username = User.Identity.Name;
 
-            var userMail = c.Users.Where(x => x.UserName== username).Select(y => y.Email).FirstOrDefault();//usermaili getirerek
-            UserManager userManager = new UserManager(new EfUserRepository());
-            
-            var id = c.Users.Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();//maile göre id'li kullanıcıyı getirir.
-            var values = userManager.TGetById(id);
+            //var userMail = c.Users.Where(x => x.UserName== username).Select(y => y.Email).FirstOrDefault();//usermaili getirerek
+            //UserManager userManager = new UserManager(new EfUserRepository());
 
-            return View(values);
+            //var id = c.Users.Where(x => x.Email == userMail).Select(y => y.Id).FirstOrDefault();//maile göre id'li kullanıcıyı getirir.
+            //var values = userManager.TGetById(id);
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);//sisteme giriş yaptığım kullanıcı adı yani name'i veriyorum
+            UserUpdateViewModel model= new UserUpdateViewModel();
+            //frontend tarafında verileri listelemek için
+            //frontendde verileri tutan modele veritabanından gelen verileri atıyor.
+            model.mailadress = values.Email;
+            model.namesurname = values.NameSurname;//frontend tarafında verileri listelemek için
+            //frontendde verileri tutan modele veritabanından gelen verileri atıyor.
+            model.imageurl = values.ImageUrl;
+            model.username = values.UserName;
+
+            return View(model);
 
         }
         
         [HttpPost]
-        public IActionResult WriterEditProfile(Writer writer)
+        public async Task<IActionResult> WriterEditProfile(UserUpdateViewModel model)
         {
-            //yazarın bilgilerini güncelleme işlemini yapacağı alan
-            //Güncelleme işlemi için önce Validator'ı çağırırız. Çünkü validasyondan geçmesi gerekir.
-            WriterValidator writerValidator = new WriterValidator();
-            ValidationResult results = writerValidator.Validate(writer);
-          
-
-            if (results.IsValid && writer.WriterPassword.Equals(writer.WriterPasswordAgain))//Eğer sonuçlar geçerli ise
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            
+            values.Email = model.mailadress;//burada ise benim gönderdiğim modelin maili yani
+                                            //kullanıcının textboxdan girdiği yeni değeri
+                                            //veritabanındaki değerine eşitleyerek güncelliyor.
+            
+            values.NameSurname = model.namesurname;
+            
+            values.ImageUrl = model.imageurl;
+            values.PasswordHash = _userManager.PasswordHasher.HashPassword(values,model.password);
+            //şifre güncelleme için HasPassword metodunu kullanırım.
+            //bu parametre olarak veritabanından identity ile giriş yapan kullanıcının bilgilerini çekerken
+            //aldığım values'u gönderiyorum. Ve 2.parametre içinde modeldeki yeni şifre değerini gönderiyorum
+            var result = await _userManager.UpdateAsync(values);//Update async ile değerleri güncelle
+            if (result.Succeeded)
             {
-                //eğer validasyon true olursa, sorun yoksa validasyona uygunsa güncellesin
-                writer.WriterStatus = true;//writerStatus içinde true verelim.
-                writerManager.TUpdate(writer);//gelen değeri güncellesin.
-                return RedirectToAction("Index", "Dashboard");//Beni Dashboard içinde yer alan index aksiyonuna yönlendirsin.
+                return RedirectToAction("Index", "Dashboard");
+
             }
-            else
-            {
-                //Eğer geçerli değilse
-                if (writer.WriterPasswordAgain != null)//hata almamak için eğer null değerinden farklıysa bu kontrolü yapmalı
-                {
-                    if (writer.WriterPassword.Equals(writer.WriterPasswordAgain) == false)
-                    {
-                        ModelState.AddModelError("WriterPasswordAgain", "Şifre tekrar alanı girdiğiniz şifre ile uyumlu olmalıdır!!");
-                        //password ve confirm password için uyumsuzluk durumunda  hata mesajı verebilmesi için bir AddModelError ekledim.
-                    }
-                }
+            return RedirectToAction("WriterEditProfile", "Writer");
 
 
-                //validasyonu sağlamaz. Hata olursa
-                foreach (var item in results.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return View();
+
+
+
+
+
+
+            ////yazarın bilgilerini güncelleme işlemini yapacağı alan
+            ////Güncelleme işlemi için önce Validator'ı çağırırız. Çünkü validasyondan geçmesi gerekir.
+            //UserValidator userValidator = new UserValidator();
+            //ValidationResult results = userValidator.Validate(p);
+            //UserManager userManager = new UserManager(new EfUserRepository());
+
+
+            //if (results.IsValid && p.PasswordHash.Equals(p.PasswordAgain))//Eğer sonuçlar geçerli ise
+            //{
+            //    //eğer validasyon true olursa, sorun yoksa validasyona uygunsa güncellesin
+
+            //    userManager.TUpdate(p);//gelen değeri güncellesin.
+            //    return RedirectToAction("Index", "Dashboard");//Beni Dashboard içinde yer alan index aksiyonuna yönlendirsin.
+            //}
+            //else
+            //{
+            //    //Eğer geçerli değilse
+            //    if (p.PasswordAgain != null)//hata almamak için eğer null değerinden farklıysa bu kontrolü yapmalı
+            //    {
+            //        if (p.PasswordHash.Equals(p.PasswordAgain) == false)
+            //        {
+            //            ModelState.AddModelError("WriterPasswordAgain", "Şifre tekrar alanı girdiğiniz şifre ile uyumlu olmalıdır!!");
+            //            //password ve confirm password için uyumsuzluk durumunda  hata mesajı verebilmesi için bir AddModelError ekledim.
+            //        }
+            //    }
+
+
+            //    //validasyonu sağlamaz. Hata olursa
+            //    foreach (var item in results.Errors)
+            //    {
+            //        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+            //    }
+            //}
+            //return View();
         }
         //yeni yazar ekleme alanı
         [AllowAnonymous]
@@ -168,5 +206,6 @@ namespace CoreDemo.Controllers
 
             return RedirectToAction("Index", "Dashboard");
         }
+       
     }
 }

@@ -45,9 +45,17 @@ namespace CoreDemo.Controllers
         //ben yazarla ilişkili bir action tanımlayacağım
         public IActionResult BlogListByWriter()//yazara göre o yazarın bloglarını getirecek
         {
-            var userMail = User.Identity.Name;//sisteme login olan kullanıcının name değerini tutsun.
+            var username = User.Identity.Name;//sisteme login olan kullanıcının name değerini tutsun.
+            var userMail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
+            //giriş yapan kullanıcının name'ini username ile tutuyorum. Ve bu username değerine sahip olan kullanıcının
+            //mailini çeker. Böylece userMail'i aldım. Böylece sisteme otantike olan kullanıcının mailini alabiliyorum
 
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+
+            var writerID = c.Writers.Where(x => x.WriterMail == username).Select(y => y.WriterID).FirstOrDefault();
+                
+
+
+            
 
             var values = blogManager.GetListWithCategoryByWriterBm(writerID);//giriş yapan kullanıcının id'sini alıyor
             //Ve o id'ye göre blogları listeliyor.
@@ -75,13 +83,18 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult BlogAdd(Blog blog)
         {
+            var username = User.Identity.Name;//sisteme login olan kullanıcının name değerini tutsun.
+            var userMail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
+            //giriş yapan kullanıcının name'ini username ile tutuyorum. Ve bu username değerine sahip olan kullanıcının
+            //mailini çeker. Böylece userMail'i aldım. Böylece sisteme otantike olan kullanıcının mailini alabiliyorum
+
+
+            var writerID = c.Writers.Where(x => x.WriterMail == username).Select(y => y.WriterID).FirstOrDefault();
             //Yazığım Validasyonları kontrol etmek için WriterValidator sınıfını çağırıyorum.
             BlogValidator blogValidator = new BlogValidator();
             //ValidatonResult isminde bir sınıfım var bunun metodlarını kullanabilmek için bunu da çağırıyorum.
             ValidationResult results = blogValidator.Validate(blog); //Writer sınıfı için tüm bu WriterValidator içindeki kontrolleri yap
-            var userMail = User.Identity.Name;//sisteme login olan kullanıcının name değerini tutsun.
-
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            
             if (results.IsValid)//Eğer sonuçlar geçerli ise
             {
                 blog.BlogStatus = true;
