@@ -153,21 +153,20 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult EditBlog(Blog blog)
         {
-            /*
-            var blogIDValue = blogManager.TGetById(blog.BlogID);
-            blogIDValue.BlogTitle = blog.BlogTitle;
-           
-           
-            blogIDValue.BlogImage = blog.BlogImage;
-            blogIDValue.BlogContent = blog.BlogContent;
-            blogIDValue.BlogThumbnailImage = blog.BlogThumbnailImage;
-            blogIDValue.CategoryID = blog.CategoryID;
-            */
-            var oldBlogValues = blogManager.TGetById(blog.BlogID);//blogun güncellenmeden önceki bilgilerini getiriyorum.
-            blog.BlogStatus = oldBlogValues.BlogStatus;//değişmesini istemediklerimi bununla yeni haline aktarıyorum. Eski bilgilerini
+
+            var username = User.Identity.Name;//sisteme login olan kullanıcının name değerini tutsun.
+            var userMail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
+            //giriş yapan kullanıcının name'ini username ile tutuyorum. Ve bu username değerine sahip olan kullanıcının
+            //mailini çeker. Böylece userMail'i aldım. Böylece sisteme otantike olan kullanıcının mailini alabiliyorum
+
+
+            var writerID = c.Writers.Where(x => x.WriterMail == username).Select(y => y.WriterID).FirstOrDefault();
+
+            //var oldBlogValues = blogManager.TGetById(blog.BlogID);//blogun güncellenmeden önceki bilgilerini getiriyorum.
+            blog.BlogStatus = true;//değişmesini istemediklerimi bununla yeni haline aktarıyorum. Eski bilgilerini
             //yeni haline aktarır.
-            blog.WriterID = oldBlogValues.WriterID;
-            blog.BlogCreateDate = oldBlogValues.BlogCreateDate;
+            blog.WriterID = writerID;
+            blog.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
          
             
           
